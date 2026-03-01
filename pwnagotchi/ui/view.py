@@ -1,3 +1,4 @@
+# import _thread
 import threading
 import logging
 import random
@@ -91,7 +92,7 @@ class View(object):
             'shakes': LabeledValue(label='PWND ', value='0 (00)', color=BLACK,
                                    position=self._layout['shakes'], label_font=fonts.Bold,
                                    text_font=fonts.Medium),
-            'mode': Text(value='AUTO', position=self._layout['mode'],
+            'mode': Text(value='A', position=self._layout['mode'],
                          font=fonts.Bold, color=BLACK),
         })
 
@@ -171,7 +172,7 @@ class View(object):
         self.update()
 
     def on_manual_mode(self, last_session):
-        self.set('mode', 'MANU')
+        self.set('mode', 'M')
         self.set('face', self._get_random_face(faces.SAD) if (last_session.epochs > 3 and last_session.handshakes == 0) else self._get_random_face(faces.HAPPY))
         self.set('status', self._voice.on_last_session_data(last_session))
         self.set('epoch', "%04d" % last_session.epochs)
